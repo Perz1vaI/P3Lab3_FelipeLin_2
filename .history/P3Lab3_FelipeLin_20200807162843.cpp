@@ -58,7 +58,7 @@ private:
     int piso;
     int estante;
     int seccion;
-    string ***arreglo_tridimensional;
+    Catalogo ***arreglo_tridimensional;
 
 public:
     Biblioteca();
@@ -72,7 +72,7 @@ public:
     string getNombre() {
         return nombre;
     }
-    string*** getArreglo_tridimensional() {
+    Catalogo*** getArreglo_tridimensional() {
         return arreglo_tridimensional;
     }
     int getSeccion() {
@@ -88,8 +88,8 @@ public:
     void setNombre(string nom) {
         nombre = nom;
     }
-    void setArreglo_tridimensional(string ***arr) {
-        arreglo_tridimensional = arr;
+    void setArreglo_tridimensional(Catalogo ***cat) {
+        arreglo_tridimensional = cat.getLista_libro;
     }
     void setSeccion(int seccion_cons) {
         seccion = seccion_cons;
@@ -190,7 +190,7 @@ int main() {
 
             Catalogo c(l);
  
-            
+            string ***arreglo_tri = Lista_biblioteca[posicion].getArreglo_tridimensional();
 
              //arreglo_tri[piso][estante][seccion]=
 
