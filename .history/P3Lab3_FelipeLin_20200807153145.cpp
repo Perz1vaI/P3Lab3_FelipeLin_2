@@ -2,77 +2,27 @@
 #include <vector>
 using namespace std;
 
-class Libro {
-private:
-    string titulo;
-    string autor;
-    int year;
-
-
-public:
-    Libro();
-    Libro(string nom, string autor_cons, int anio) {
-        titulo = nom;
-        autor = autor_cons;
-        year = anio;
-    }
-    string getTitulo() {
-        return titulo;
-    }
-    string getAutor() {
-        return autor;
-    }
-    int getYear() {
-        return year;
-    }
-
-
-    void setTitulo(string nom) {
-        titulo = nom;
-    }
-    void setAutor(string autor_cons) {
-        autor = autor_cons;
-    }
-    void setYear(int anio) {
-        year = anio;
-    }
-
-};
-
-
-class Catalogo {
-    vector<Libro> lista_libro;
-public:
-    Catalogo(Libro libros) {
-        lista_libro.push_back(libros);
-    }
-    vector<Libro> getLista_libro() {
-        return lista_libro;
-    }
-};
-
-
 class Biblioteca {
 private:
     string nombre;
     int piso;
     int estante;
     int seccion;
-    Catalogo ***arreglo_tridimensional;
+    string ***arreglo_tridimensional;
 
 public:
     Biblioteca();
     Biblioteca(string nom, int piso_cons, int estante_cons, int seccion_cons) {
         nombre = nom;
+        arreglo_tridimensional[piso_cons][estante_cons][seccion_cons];
         piso = piso_cons;
         estante = estante_cons;
         seccion = seccion_cons;
-        arreglo_tridimensional[piso_cons][estante_cons][seccion_cons];
     }
     string getNombre() {
         return nombre;
     }
-    Catalogo*** getArreglo_tridimensional() {
+    string*** getArreglo_tridimensional() {
         return arreglo_tridimensional;
     }
     int getSeccion() {
@@ -88,8 +38,8 @@ public:
     void setNombre(string nom) {
         nombre = nom;
     }
-    void setArreglo_tridimensional(int piso_cons, int estante_cons, int seccion_cons, Catalogo cat) {
-        arreglo_tridimensional[piso_cons][estante_cons][seccion_cons] = cat.getLista_libro();
+    void setArreglo_tridimensional(string ***arr) {
+        arreglo_tridimensional = arr;
     }
     void setSeccion(int seccion_cons) {
         seccion = seccion_cons;
@@ -103,6 +53,55 @@ public:
 
 };
 
+class Catalogo {
+    vector<Libro> lista_libro = NULL;
+    public:
+    Catalogo();
+    void setLista_libro(Libro lista){
+        lista_libro = lista;
+    }
+
+    vector<Libro> getLista_libro(){
+        return lista_libro;
+    }
+};
+
+class Libro {
+private:
+    string nombre;
+    string autor;
+    int year;
+
+
+public:
+    Libro();
+    Libro(string nom, string autor_cons, int anio) {
+        nombre = nom;
+        autor = autor_cons;
+        year = anio;
+    }
+    string getNombre() {
+        return nombre;
+    }
+    string getAutor() {
+        return autor;
+    }
+    int getYear() {
+        return year;
+    }
+
+
+    void setNombre(string nom) {
+        nombre = nom;
+    }
+    void setAutor(string autor_cons) {
+        autor = autor_cons;
+    }
+    void setYear(int anio) {
+        year = anio;
+    }
+
+};
 
 vector<Biblioteca> Lista_biblioteca;
 
@@ -138,21 +137,15 @@ int main() {
 
             for (int i = 0; i < Lista_biblioteca.size(); i++)
             {
-                cout << "Posicion: " << i << " " << Lista_biblioteca[i].getNombre() << endl;
+                cout << "Posicion: " << i << " " << Lista_biblioteca[i].getArreglo_tridimensional() << endl;
             }
 
             cin >> posicion;
-            while (posicion > Lista_biblioteca.size())
-            {
-                cout << "No puede ingresar ese numero!" << endl;
-                cin >> posicion;
-
-            }
 
 
             cout << "En que piso quiere ingresar el libro: " << endl;
             cin >> piso;
-            while (piso > Lista_biblioteca[posicion].getPiso() || piso < 0)
+            while (piso > Lista_biblioteca[posicion].getPiso() && piso < 0)
             {
                 cout << "No puede ingresar ese numero!" << endl;
                 cin >> piso;
@@ -161,38 +154,28 @@ int main() {
 
             cout << "En que estante quiere ingresar el libro: " << endl;
             cin >> estante;
-            while (estante > Lista_biblioteca[posicion].getEstante() || estante < 0)
+            while (estante > Lista_biblioteca[posicion].getEstante() && estante < 0)
             {
                 cout << "No puede ingresar ese numero!" << endl;
                 cin >> estante;
-
+                
             }
 
             cout << "En que seccion quiere ingresar el libro: " << endl;
             cin >> seccion;
-            while (seccion > Lista_biblioteca[posicion].getSeccion() || seccion < 0)
+            while (seccion > Lista_biblioteca[posicion].getSeccion() && seccion < 0)
             {
                 cout << "No puede ingresar ese numero!" << endl;
                 cin >> seccion;
-
+                
             }
-            string titulo, autor;
-            int year;
+            Catalogo c;
+            c.getLista_libro.
+            
 
-            cout << "Ingrese el titulo del libro: " << endl;
-            cin >> titulo;
-            cout << "Ingrese el nombre del autor: " << endl;
-            cin >> autor;
-            cout << "Ingrese el año de lanzamiento: " << endl;
-            cin >> year;
-
-            Libro l(titulo,autor,year);
-
-            Catalogo c(l);
- 
             string ***arreglo_tri = Lista_biblioteca[posicion].getArreglo_tridimensional();
 
-             //arreglo_tri[piso][estante][seccion]=
+            arreglo_tri[piso][estante][seccion]=
 
             break;
         }

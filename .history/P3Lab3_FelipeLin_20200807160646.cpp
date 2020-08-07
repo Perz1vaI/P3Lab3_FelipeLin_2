@@ -2,6 +2,69 @@
 #include <vector>
 using namespace std;
 
+class Biblioteca {
+private:
+    string nombre;
+    int piso;
+    int estante;
+    int seccion;
+    string ***arreglo_tridimensional;
+
+public:
+    Biblioteca();
+    Biblioteca(string nom, int piso_cons, int estante_cons, int seccion_cons) {
+        nombre = nom;
+        piso = piso_cons;
+        estante = estante_cons;
+        seccion = seccion_cons;
+        arreglo_tridimensional = new int*[piso_cons];
+        for (int i = 0; i < piso_cons; i++)
+        {
+            arreglo_tridimensional[i] = new int[estante_cons];
+        }
+
+        for (int k = 0; k < estante_cons; k++)
+        {
+            arreglo_tridimensional[k] = new int[seccion_cons];
+
+        }
+
+
+    }
+    string getNombre() {
+        return nombre;
+    }
+    string*** getArreglo_tridimensional() {
+        return arreglo_tridimensional;
+    }
+    int getSeccion() {
+        return seccion;
+    }
+    int getEstante() {
+        return estante;
+    }
+    int getPiso() {
+        return piso;
+    }
+
+    void setNombre(string nom) {
+        nombre = nom;
+    }
+    void setArreglo_tridimensional(string ***arr) {
+        arreglo_tridimensional = arr;
+    }
+    void setSeccion(int seccion_cons) {
+        seccion = seccion_cons;
+    }
+    void setEstante(int estante_cons) {
+        estante = estante_cons;
+    }
+    void setPiso(int piso_cons) {
+        piso = piso_cons;
+    }
+
+};
+
 class Libro {
 private:
     string titulo;
@@ -51,59 +114,6 @@ public:
     }
 };
 
-
-class Biblioteca {
-private:
-    string nombre;
-    int piso;
-    int estante;
-    int seccion;
-    Catalogo ***arreglo_tridimensional;
-
-public:
-    Biblioteca();
-    Biblioteca(string nom, int piso_cons, int estante_cons, int seccion_cons) {
-        nombre = nom;
-        piso = piso_cons;
-        estante = estante_cons;
-        seccion = seccion_cons;
-        arreglo_tridimensional[piso_cons][estante_cons][seccion_cons];
-    }
-    string getNombre() {
-        return nombre;
-    }
-    Catalogo*** getArreglo_tridimensional() {
-        return arreglo_tridimensional;
-    }
-    int getSeccion() {
-        return seccion;
-    }
-    int getEstante() {
-        return estante;
-    }
-    int getPiso() {
-        return piso;
-    }
-
-    void setNombre(string nom) {
-        nombre = nom;
-    }
-    void setArreglo_tridimensional(int piso_cons, int estante_cons, int seccion_cons, Catalogo cat) {
-        arreglo_tridimensional[piso_cons][estante_cons][seccion_cons] = cat.getLista_libro();
-    }
-    void setSeccion(int seccion_cons) {
-        seccion = seccion_cons;
-    }
-    void setEstante(int estante_cons) {
-        estante = estante_cons;
-    }
-    void setPiso(int piso_cons) {
-        piso = piso_cons;
-    }
-
-};
-
-
 vector<Biblioteca> Lista_biblioteca;
 
 int main() {
@@ -149,6 +159,7 @@ int main() {
 
             }
 
+            cout << Lista_biblioteca[posicion].getPiso() << " cant piso" << endl;
 
             cout << "En que piso quiere ingresar el libro: " << endl;
             cin >> piso;
@@ -189,10 +200,12 @@ int main() {
             Libro l(titulo,autor,year);
 
             Catalogo c(l);
- 
+  
+
             string ***arreglo_tri = Lista_biblioteca[posicion].getArreglo_tridimensional();
 
-             //arreglo_tri[piso][estante][seccion]=
+ 
+            //arreglo_tri[piso][estante][seccion]=
 
             break;
         }

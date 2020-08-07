@@ -58,7 +58,7 @@ private:
     int piso;
     int estante;
     int seccion;
-    Catalogo ***arreglo_tridimensional;
+    string ***arreglo_tridimensional;
 
 public:
     Biblioteca();
@@ -72,7 +72,7 @@ public:
     string getNombre() {
         return nombre;
     }
-    Catalogo*** getArreglo_tridimensional() {
+    string*** getArreglo_tridimensional() {
         return arreglo_tridimensional;
     }
     int getSeccion() {
